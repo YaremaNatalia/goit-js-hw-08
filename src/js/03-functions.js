@@ -13,19 +13,26 @@ function onTextAreaInputs(event) {
 
 // функція яка заповнює поля останніми даними при перезавантаженні сторінки
 function populateInputsArea() {
-  // перевірка на помилки при парселі даних з локал стореджу
-  try {
-    const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
-    savedInputsData = JSON.parse(stringData); // персел строки в обєкт
-  } catch (evt) {
-    console.error('Помилка під час отримання даних з localStorage:', evt);
-  }
-  // перевіряємо чи є збережений текст в localStorage
+  const stringData = localStorage.getItem(STORAGE_KEY);
+  savedInputsData = JSON.parse(stringData);
   if (savedInputsData) {
     refs.email.value = savedInputsData.email || ''; // повертаємо остані введені дані з обєкта локал сторедж і інпут, або порожню строку якщо нічого не було введено
     refs.message.value = savedInputsData.message || '';
   }
+  // перевірка на помилки при парселі даних з локал стореджу
+  //   try {
+  //     const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
+  //     savedInputsData = JSON.parse(stringData); // персел строки в обєкт
+  //   } catch (evt) {
+  //     console.error('Помилка під час отримання даних з localStorage:', evt);
+  //   }
+  //   // перевіряємо чи є збережений текст в localStorage
+  //   if (savedInputsData) {
+  //     refs.email.value = savedInputsData.email || ''; // повертаємо остані введені дані з обєкта локал сторедж і інпут, або порожню строку якщо нічого не було введено
+  //     refs.message.value = savedInputsData.message || '';
+  //   }
 }
+
 // функція очищення форми, локал стореджу і виведення останніх даних в консоль при натисканні сабміту
 function onSubmitBtn(event) {
   event.preventDefault(); // уникнення перезавантаження сторінки
