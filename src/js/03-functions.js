@@ -1,14 +1,5 @@
-// import refs from './03-references';
-
-const refs = {
-  form: document.querySelector('.feedback-form'),
-  email: document.querySelector('input[name="email"]'), // посилання через нейм
-  message: document.querySelector('textarea[name="message"]'),
-};
-
-// вішаємо слухачі подій
-refs.form.addEventListener('input', throttle(onTextAreaInputs, 1000)); // на введення в інпутах
-refs.form.addEventListener('submit', onSubmitBtn); // на подію сабміту
+import throttle from 'lodash.throttle';
+import refs from './03-references'; // дефолтне імпортування посилань на елементи форми
 
 const STORAGE_KEY = 'feedback-form-state'; // виносимо в глобальну змінну параметр, що часто використовується
 const formData = {}; // створюємо обєкт для збереження тексту з інпутів
@@ -38,9 +29,10 @@ function populateInputsArea() {
 // функція очищення форми, локал стореджу і виведення останніх даних в консоль при натисканні сабміту
 function onSubmitBtn(event) {
   event.preventDefault(); // уникнення перезавантаження сторінки
-  event.currentTarget.reset(); //очищення всієї форми при кліку на кнопку
+  event.currentTarget.reset(); //очищення всієї форми при кліку на кнопку (резет лише якщо це форма)
+  // refs.currentTarget.value = ''; // якщо не форма можна очищати значення  полів через присвоєння пустої строки
   console.log(JSON.parse(localStorage.getItem(STORAGE_KEY))); // виведення у консоль об'єкт з полями email, message та їхніми поточними значеннями
   localStorage.removeItem(STORAGE_KEY); // очищення локал стореджу після сабміту
 }
 
-export { onTextAreaInputs, populateInputsArea, onSubmitBtn };
+export { onTextAreaInputs, populateInputsArea, onSubmitBtn }; //іменований експорт функцій через обєкт
