@@ -13,14 +13,16 @@ function onTextAreaInputs(event) {
 
 // функція яка заповнює поля останніми даними при перезавантаженні сторінки
 function populateInputsArea() {
-  let savedInputsData;
+  // let savedInputsData;
+  const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
+   const savedInputsData = JSON.parse(stringData); // персел строки в обєкт
   // перевірка на помилки при парселі даних з локал стореджу
-  try {
-    const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
-    savedInputsData = JSON.parse(stringData); // персел строки в обєкт
-  } catch (error) {
-    console.error('Помилка під час отримання даних з localStorage:', error);
-  }
+  // try {
+  //   const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
+  //   savedInputsData = JSON.parse(stringData); // персел строки в обєкт
+  // } catch (error) {
+  //   console.error('Помилка під час отримання даних з localStorage:', error);
+  // }
   // перевіряємо чи є збережений текст в localStorage
   if (savedInputsData) {
     refs.email.value = savedInputsData.email || ''; // повертаємо остані введені дані з обєкта локал сторедж і інпут, або порожню строку якщо нічого не було введено
