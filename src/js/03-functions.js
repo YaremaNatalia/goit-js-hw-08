@@ -17,8 +17,8 @@ function populateInputsArea() {
   try {
     const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
     savedInputsData = JSON.parse(stringData); // персел строки в обєкт
-  } catch (evt) {
-    console.error('Помилка під час отримання даних з localStorage:', evt);
+  } catch (error) {
+    console.error('Помилка під час отримання даних з localStorage:', error);
   }
   // перевіряємо чи є збережений текст в localStorage
   if (savedInputsData) {
