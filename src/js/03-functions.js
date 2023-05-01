@@ -13,6 +13,7 @@ function onTextAreaInputs(event) {
 
 // функція яка заповнює поля останніми даними при перезавантаженні сторінки
 function populateInputsArea() {
+  let savedInputsData;
   // перевірка на помилки при парселі даних з локал стореджу
   try {
     const stringData = localStorage.getItem(STORAGE_KEY); // отримання обєкту через ключ у вигляді строки
