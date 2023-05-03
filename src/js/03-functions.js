@@ -8,7 +8,7 @@ let formData = load(STORAGE_KEY) || {}; // створюємо обєкт для 
 // функція запису в локал сторедж значень інпутів
 function onTextAreaInputs(event) {
   // в змінну значення поля куди де відпувається введення (завжди target!!!)
-  formData[event.target.name] = event.target.value; // в обєкт форм дата з ключем [event.target.name] покласти значення event.target.value
+  formData[event.target.name] = event.target.value; // в обєкт форм дата з ключем [event.target.name - це невідоме значення тому в квдрат дужках. Сохраняем значения всех текстовых полей на странице в объекте formData, используя атрибут name в качестве ключа.] покласти значення event.target.value
   save(STORAGE_KEY, formData); //зберігаємо в локал сторедж через метод save, що перевіряє помилки парсу, імпортований з файлу сторедж
   // localStorage.setItem(STORAGE_KEY, JSON.stringify(formData)); // зберігаємо в локал сторедж без перевірки на помилки методом save
 }
